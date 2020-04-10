@@ -14,46 +14,36 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
-    const date = Date.now();
     const res = await api.post('repositories', {
-      "title": `Título ${date}`,
-      "url": `https://github.com/${date}`,
-      "techs": [`React Native ${date}`, `Node.js ${date}`]
+      "title": `Desafio Conceitos ReactJS ${Date.now()}`,
+      "url": `https://github.com/salomaocristiano/gostack11-desafio-conceitos-reactjs`,
+      "techs": [`ReactJS`, `Node.js`]
     });
 
-    const repositorie = res.data;
+    const repository = res.data;
 
-    setRepositories([...repositories, repositorie]);
+    setRepositories([...repositories, repository]);
   }
 
   async function handleRemoveRepository(id) {
-    const repositorieIndex = repositories.findIndex(repositorie => repositorie.id === id);
-
-    if(repositorieIndex < 0) {
-      alert('Repositório não encontrado!');
-      return;
-    }
-
     const { status } = await api.delete(`repositories/${id}`);
 
     if(status !== 204) {
       alert('Não foi possível excluir o repositório!');
       return;
     }
-    
-    repositories.splice(repositorieIndex, 1);
 
-    setRepositories([...repositories]);
+    setRepositories(repositories.filter(repository => repository.id !== id ));
   }
 
   return (
     <div>
       <ul data-testid="repository-list">
-        {repositories.map(repositorie =>  (
-        <li key={repositorie.id}>
-          {repositorie.title}
+        {repositories.map(repository =>  (
+        <li key={repository.id}>
+          {repository.title}
 
-          <button onClick={() => handleRemoveRepository(repositorie.id)}>
+          <button onClick={() => handleRemoveRepository(repository.id)}>
             Remover
           </button>
         </li>
