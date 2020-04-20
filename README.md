@@ -33,6 +33,12 @@
 
 </p>
 
+<p align="center">
+
+![image-example](https://raw.githubusercontent.com/salomaocristiano/gostack11-desafio-conceitos-reactjs/master/assets/test.jpg)
+
+</p>
+
 ## :rocket: Sobre o desafio
 
 Criar uma aplicação para armazenar repositórios do portfólio, já desenvolvido o backend no último desafio utilizando o Node.js.
